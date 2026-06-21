@@ -1,11 +1,10 @@
-import { mockNotifications } from '@/constants/mockData'
-import { mockDelay } from '@/utils'
+import apiClient from '@/services/apiClient'
 import type { AppNotification } from '@/types'
+import { mapNotification, type ApiNotification } from '@/utils/apiMappers'
 
-/** Replace with: apiClient.get('/notifications') */
 export const notificationService = {
   async getNotifications(): Promise<AppNotification[]> {
-    await mockDelay()
-    return mockNotifications
+    const { data } = await apiClient.get<ApiNotification[]>('/api/notifications')
+    return data.map(mapNotification)
   },
 }

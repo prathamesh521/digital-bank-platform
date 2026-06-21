@@ -1,11 +1,19 @@
-import { mockBeneficiaries } from '@/constants/mockData'
-import { mockDelay } from '@/utils'
+import apiClient from '@/services/apiClient'
 import type { Beneficiary } from '@/types'
+import { mapBeneficiary } from '@/utils/apiMappers'
 
-/** Replace with: apiClient.get('/beneficiaries') */
 export const beneficiaryService = {
   async getBeneficiaries(): Promise<Beneficiary[]> {
-    await mockDelay()
-    return mockBeneficiaries
+    const { data } = await apiClient.get<
+      {
+        id: string
+        name: string
+        accountNumber: string
+        bankName: string
+        ifscCode: string
+        nickname?: string
+      }[]
+    >('/api/beneficiaries')
+    return data.map(mapBeneficiary)
   },
 }

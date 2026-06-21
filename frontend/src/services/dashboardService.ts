@@ -1,11 +1,10 @@
-import { mockDashboardSummary } from '@/constants/mockData'
-import { mockDelay } from '@/utils'
+import apiClient from '@/services/apiClient'
 import type { DashboardSummary } from '@/types'
+import { mapDashboardSummary, type ApiDashboardSummary } from '@/utils/apiMappers'
 
-/** Replace with: apiClient.get('/dashboard/summary') */
 export const dashboardService = {
   async getSummary(): Promise<DashboardSummary> {
-    await mockDelay()
-    return mockDashboardSummary
+    const { data } = await apiClient.get<ApiDashboardSummary>('/api/dashboard/summary')
+    return mapDashboardSummary(data)
   },
 }

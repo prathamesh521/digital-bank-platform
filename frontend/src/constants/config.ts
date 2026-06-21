@@ -1,7 +1,6 @@
 /**
  * Central configuration for API integration.
- * When connecting to Spring Boot, update VITE_API_BASE_URL in .env
- * and swap mock implementations in services/ for axios calls.
+ * Set VITE_API_BASE_URL in .env (host only, no /api suffix).
  */
 export const APP_CONFIG = {
   appName: 'NextGen Bank',

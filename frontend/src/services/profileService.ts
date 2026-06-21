@@ -1,11 +1,10 @@
-import { mockUser } from '@/constants/mockData'
-import { mockDelay } from '@/utils'
+import apiClient from '@/services/apiClient'
 import type { User } from '@/types'
+import { mapUser, type ApiUser } from '@/utils/apiMappers'
 
-/** Replace with: apiClient.get('/profile') */
 export const profileService = {
   async getProfile(): Promise<User> {
-    await mockDelay()
-    return mockUser
+    const { data } = await apiClient.get<ApiUser>('/api/profile')
+    return mapUser(data)
   },
 }

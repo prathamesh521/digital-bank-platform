@@ -1,11 +1,10 @@
-import { mockAnalyticsData } from '@/constants/mockData'
-import { mockDelay } from '@/utils'
+import apiClient from '@/services/apiClient'
 import type { AnalyticsData } from '@/types'
+import { mapAnalytics, type ApiAnalytics } from '@/utils/apiMappers'
 
-/** Replace with: apiClient.get('/analytics') */
 export const analyticsService = {
   async getAnalytics(): Promise<AnalyticsData> {
-    await mockDelay()
-    return mockAnalyticsData
+    const { data } = await apiClient.get<ApiAnalytics>('/api/analytics')
+    return mapAnalytics(data)
   },
 }
