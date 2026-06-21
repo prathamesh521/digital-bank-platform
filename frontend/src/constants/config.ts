@@ -6,7 +6,7 @@
 export const APP_CONFIG = {
   appName: 'NextGen Bank',
   tagline: 'Banking reimagined for the digital age',
-  apiBaseUrl: import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8080/api',
+  apiBaseUrl: import.meta.env.VITE_API_BASE_URL ?? 'https://digital-bank-platform-api.onrender.com',
   mockDelayMs: 400,
   pagination: {
     defaultPageSize: 10,
